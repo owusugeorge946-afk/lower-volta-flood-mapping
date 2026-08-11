@@ -38,3 +38,18 @@ Reproducibility code for **Cloud-Independent Flood Mapping and Surface Water Dyn
 
 ## Important verification step
 Earth Engine catalogues and sampling masks can change the reproduced numerical outputs. Before manuscript submission, compare the newly exported benchmark, sensitivity, hydro-climatic, and 600-point agreement tables against the frozen manuscript results. Do **not** overwrite a discrepancy with hard-coded manuscript values; investigate it and archive the exact acquisition metadata and exported comparison sample.
+
+## Diagnostic benchmark provenance
+
+The manuscript contains two distinct comparison analyses and they must not be conflated:
+
+1. **Final 600-point inter-sensor agreement** — reproduced from the actual exported `LV_S1_S2_600_Point_Comparison.csv` using `colab/04_agreement_metrics.py`. The script fails if the 600-point file is absent; it does not substitute manuscript values.
+2. **Diagnostic Otsu / fixed-threshold benchmark** — the versioned manuscript benchmark metrics and the 3x3 F1 sensitivity matrix are stored under `data/archived/`. GEE script 05 regenerates Otsu thresholds, mapped areas, and the threshold prediction stack from imagery, but it does not create a new random sample and mislabel it as the archived diagnostic benchmark.
+
+This separation preserves the distinction made in the manuscript between the diagnostic method-comparison results and the final Sentinel-1/Sentinel-2 inter-sensor agreement statistics.
+
+## Public code and data availability
+
+Repository: `https://github.com/owusugeorge946-afk/lower-volta-flood-mapping`
+
+Large processed rasters and the study-area boundary may remain outside GitHub because of file-size and Earth Engine asset constraints; the code, configuration, metadata-export workflow, and archived diagnostic numerical outputs are included here.

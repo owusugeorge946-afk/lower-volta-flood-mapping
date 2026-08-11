@@ -1,0 +1,4 @@
+method,threshold,temporary_water_km2,overall_agreement_pct,precision_pct,recall_pct,specificity_pct,f1_pct,kappa,provenance
+Otsu VV,-15.559 dB,7.676,81.25,98.80,61.42,99.32,75.75,0.618,Archived diagnostic benchmark output used in manuscript
+Otsu VH,-23.572 dB,7.129,,,,,74.59,0.603,Archived diagnostic benchmark output used in manuscript
+Fixed dual polarisation,VV < -17 dB; VH < -23 dB,5.868,78.21,98.66,55.06,99.32,70.67,0.555,Archived diagnostic benchmark output used in manuscript
