@@ -13,6 +13,7 @@ function s1(start,end){
   return ee.ImageCollection('COPERNICUS/S1_GRD')
     .filterBounds(aoi).filterDate(start,end)
     .filter(ee.Filter.eq('instrumentMode','IW'))
+    .filter(ee.Filter.eq('resolution_meters',10))
     .filter(ee.Filter.listContains('transmitterReceiverPolarisation','VV'))
     .filter(ee.Filter.listContains('transmitterReceiverPolarisation','VH'))
     .select(['VV','VH'])

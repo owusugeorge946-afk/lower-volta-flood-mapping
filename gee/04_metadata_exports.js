@@ -4,6 +4,7 @@ var FOLDER='Lower_Volta_Final_Exports';
 function s1raw(start,end,label){
  return ee.ImageCollection('COPERNICUS/S1_GRD').filterBounds(aoi).filterDate(start,end)
   .filter(ee.Filter.eq('instrumentMode','IW'))
+  .filter(ee.Filter.eq('resolution_meters',10))
   .filter(ee.Filter.listContains('transmitterReceiverPolarisation','VV'))
   .filter(ee.Filter.listContains('transmitterReceiverPolarisation','VH'))
   .map(function(img){return img.set('analysis_window',label);});
@@ -19,7 +20,8 @@ var s1meta=ee.FeatureCollection(s1.map(function(img){
   image_id:img.id(),system_index:img.get('system:index'),platform_number:img.get('platform_number'),
   instrument_mode:img.get('instrumentMode'),orbit_pass:img.get('orbitProperties_pass'),
   relative_orbit_start:img.get('relativeOrbitNumber_start'),relative_orbit_stop:img.get('relativeOrbitNumber_stop'),
-  resolution_meters:img.get('resolution_meters'),polarisations:img.get('transmitterReceiverPolarisation')
+  resolution_meters:img.get('resolution_meters'),
+  manuscript_hydro_date:ee.List(['2023-10-04','2023-10-11','2023-10-16','2023-10-23']).contains(ee.Date(img.get('system:time_start')).format('YYYY-MM-dd')),polarisations:img.get('transmitterReceiverPolarisation')
  });
 }));
 var s2=ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED').filterBounds(aoi)

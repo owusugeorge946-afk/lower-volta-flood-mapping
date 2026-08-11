@@ -8,6 +8,7 @@ var gsw=ee.Image('JRC/GSW1_4/GlobalSurfaceWater').select('occurrence').clip(aoi)
 function s1(start,end){
  return ee.ImageCollection('COPERNICUS/S1_GRD').filterBounds(aoi).filterDate(start,end)
   .filter(ee.Filter.eq('instrumentMode','IW'))
+  .filter(ee.Filter.eq('resolution_meters',10))
   .filter(ee.Filter.listContains('transmitterReceiverPolarisation','VV'))
   .filter(ee.Filter.listContains('transmitterReceiverPolarisation','VH'))
   .select(['VV','VH']).map(function(img){
