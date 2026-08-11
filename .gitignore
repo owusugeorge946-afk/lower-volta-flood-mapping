@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/exports/*.tif
+data/exports/*.tiff
+outputs/*.tif
+outputs/*.tiff
